@@ -1,13 +1,12 @@
 public class Job {
     double arrivalTime;
     double processingTime;
-    double timeCompleted; // for finish time
-    boolean jobComplete;
+    double currProcessedTime;
+    double finishedTime;
 
     public Job(double arrivalTime, double processingTime) {
         this.arrivalTime = arrivalTime;
         this.processingTime = processingTime;
-        this.jobComplete = false;
     }
 
     public double getArrivalTime() {
@@ -19,19 +18,27 @@ public class Job {
     }
 
     public boolean isFinished() {
-        return jobComplete;
+        return currProcessedTime == processingTime;
     }
 
     public double timeInQueue() {
-        return timeCompleted - arrivalTime;
+        return finishedTime - arrivalTime;
     }
 
     public double getFinishTime() {
-        return timeCompleted;
+        return finishedTime;
     }
 
     public void setFinishTime(double time) {
-        timeCompleted = time;
+        finishedTime = time;
+    }
+
+    public double getTimeProcessed() {
+        return currProcessedTime;
+    }
+
+    public double getTimeRemaining() {
+        return processingTime - currProcessedTime;
     }
 
 }
